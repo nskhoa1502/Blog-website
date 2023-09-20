@@ -6,10 +6,12 @@ export const ThemeContext = createContext();
 
 const getFormLocalStorage = () => {
   // Component initilizes as server-side component, takes time to  transition to client-side component.
-  if (typeof window !== undefined) {
+  if (typeof window !== "undefined" && window.localStorage) {
     const value = localStorage.getItem("theme");
-
     return value || "light";
+  } else {
+    // Handle the case where localStorage is not available, e.g., when running on the server
+    return "light"; // Provide a default value or handle this case as needed
   }
 };
 

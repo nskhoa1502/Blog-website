@@ -7,12 +7,12 @@ import { ThemeContext } from "../context/ThemeContext";
 const ThemeToggle = () => {
   const { toggle, theme } = useContext(ThemeContext);
 
-  console.log(theme);
+  // console.log(theme);
   //   console.log(toggle);
   return (
     <div
       className={styles.container}
-      // Change background color of the toggle button
+      // Change background of button
       style={
         theme === "dark" ? { background: "white" } : { background: "#0f172a" }
       }

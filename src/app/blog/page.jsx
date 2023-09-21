@@ -6,7 +6,6 @@ import Menu from "@/components/menu/Menu";
 const BlogPage = ({ searchParams }) => {
   const page = +searchParams.page || 1;
   const { cat } = searchParams;
-  console.log(cat);
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{cat} blog</h1>

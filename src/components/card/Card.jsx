@@ -3,6 +3,7 @@ import styles from "./Card.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/utils/formatDate";
+import { removeHtmlAndCssTags } from "@/utils/truncateHtml";
 
 const Card = ({ key, item }) => {
   return (
@@ -23,7 +24,9 @@ const Card = ({ key, item }) => {
         <Link href={`/posts/${item?.slug}`}>
           <h1>{item?.title}</h1>
         </Link>
-        <p className={styles.desc}>{item?.desc.substring(0, 60)}</p>
+        <p className={styles.desc}>
+          {removeHtmlAndCssTags(item?.desc).substring(0, 60)}
+        </p>
         <Link href={`/posts/${item?.slug}`} className={styles.link}>
           Read More
         </Link>

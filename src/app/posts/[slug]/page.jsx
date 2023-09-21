@@ -4,6 +4,7 @@ import Menu from "@/components/menu/Menu";
 import Image from "next/image";
 import Comments from "@/components/comments/Comments";
 import { formatDate } from "@/utils/formatDate";
+import { removeHtmlAndCssTags } from "@/utils/truncateHtml";
 
 const getData = async (slug) => {
   const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {

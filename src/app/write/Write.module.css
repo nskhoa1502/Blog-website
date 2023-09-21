@@ -9,6 +9,19 @@
   position: relative;
 }
 
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category {
+  background-color: var(--bg);
+  color: var(--textColor);
+  padding: 10px 20px;
+  text-transform: uppercase;
+}
+
 .postButtons {
   display: flex;
   gap: 20px;

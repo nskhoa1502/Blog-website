@@ -36,7 +36,7 @@ const Featured = async () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>
-        <b>Hi, I'm Khoa</b> ! Welcome to my blog
+        <b>Hi, I am Khoa</b> ! Welcome to my blog
       </h1>
       <div className={styles.post}>
         <div className={styles.imgContainer}>

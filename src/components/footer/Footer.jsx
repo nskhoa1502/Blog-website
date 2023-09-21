@@ -9,7 +9,7 @@ const Footer = () => {
       <div className={styles.info}>
         <div className={styles.logo}>
           <Image src={"/logo.png"} alt="" width={50} height={50} />
-          <h1 className={styles.logoText}>Khoa's blog</h1>
+          <h1 className={styles.logoText}>Khoa blog</h1>
         </div>
         <p className={styles.desc}>
           Pariatur sit id irure voluptate cupidatat velit minim aliquip

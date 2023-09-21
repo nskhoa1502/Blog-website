@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Write.module.css";
 import Image from "next/image";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -15,11 +14,14 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import { slugify } from "@/utils/slugify";
+import dynamic from "next/dynamic";
 
 const storage = getStorage(app);
 
 const WritePage = () => {
   const { status } = useSession();
+  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -122,7 +124,9 @@ const WritePage = () => {
           onChange={(e) => setCatSlug(e.target.value)}
         >
           {categories?.map((category) => (
-            <option value={category?.slug}>{category?.title}</option>
+            <option value={category?.slug} key={category?.slug}>
+              {category?.title}
+            </option>
           ))}
         </select>
       </div>

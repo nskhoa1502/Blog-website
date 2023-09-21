@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./Write.module.css";
 import Image from "next/image";
 import "react-quill/dist/quill.bubble.css";
@@ -19,8 +19,12 @@ import dynamic from "next/dynamic";
 const storage = getStorage(app);
 
 const WritePage = () => {
+  const ReactQuill = useMemo(
+    () => dynamic(() => import("react-quill"), { ssr: false }),
+    []
+  );
+
   const { status } = useSession();
-  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
   const router = useRouter();
   const [open, setOpen] = useState(false);

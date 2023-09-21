@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./comments.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,13 +21,20 @@ const fetchData = async (url) => {
 };
 
 const Comments = ({ postSlug }) => {
-  const status = useSession();
+  const { status } = useSession();
+  const [desc, setDesc] = useState("");
 
-  const { data, isLoading } = useSWR(
+  const { data, mutate, isLoading } = useSWR(
     `http://localhost:3000/api/comments?postSlug=${postSlug}`,
     fetchData
   );
-  console.log(data);
+  const handleSubmit = async () => {
+    await fetch("/api/comments", {
+      method: "POST",
+      body: JSON.stringify({ desc, postSlug }),
+    });
+    mutate();
+  };
   return (
     <div>
       <h1 className={styles.title}>Comments</h1>
@@ -36,8 +43,11 @@ const Comments = ({ postSlug }) => {
           <textarea
             placeholder="write a comment"
             className={styles.input}
+            onChange={(e) => setDesc(e.target.value)}
           ></textarea>
-          <button className={styles.button}>Send</button>
+          <button onClick={handleSubmit} className={styles.button}>
+            Send
+          </button>
         </div>
       ) : (
         <Link href="/login">Login to write a comment</Link>
